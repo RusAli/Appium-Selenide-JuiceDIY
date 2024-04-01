@@ -1,2 +1,4 @@
-package pages;public class AbsBasePage {
+package pages;
+
+public abstract class AbsBasePage<T> {
 }
