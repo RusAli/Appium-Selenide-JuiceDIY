@@ -1,21 +1,22 @@
 package andy;
 
+import com.google.inject.Inject;
 import extenstions.AppiumExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.MainPage;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.appium.SelenideAppium.$;
 import static com.codeborne.selenide.appium.SelenideAppium.$x;
 
 @ExtendWith(AppiumExtension.class)
 public class AndyTest {
 
-  private MainPage mainPage = new MainPage();
+  @Inject
+  private MainPage mainPage;
 
   @Test
-  void checkMainPage(){
+  void checkMainPage() {
     mainPage.open();
 
     $x("//android.widget.HorizontalScrollView/android.view.View/android.view.View/android.view.View/android.view.View")

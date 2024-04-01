@@ -34,7 +34,7 @@ public class SelenideWebDriver implements WebDriverProvider {
     options.setApp(app.getAbsolutePath());
 
     try {
-      return new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), options);
+      return new AndroidDriver(new URL(System.getProperty("remote.url")), options);
     } catch (MalformedURLException e) {
       throw new RuntimeException(e);
     }

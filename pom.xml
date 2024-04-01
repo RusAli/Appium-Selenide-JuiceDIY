@@ -26,6 +26,9 @@
         <junit.version>5.10.1</junit.version>
         <selenide.version>6.19.1</selenide.version>
         <commons.version>2.11.0</commons.version>
+        <juice.version>7.0.0</juice.version>
+
+        <remote.url>http://127.0.0.1:4723/wd/hub</remote.url>
 
     </properties>
 
@@ -59,6 +62,13 @@
             <version>${commons.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${juice.version}</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -72,6 +82,7 @@
                     <systemPropertyVariables>
                         <junit.jupiter.extensions.autodetection.enabled>true
                         </junit.jupiter.extensions.autodetection.enabled>
+                        <remote.url>${remote.url}</remote.url>
                     </systemPropertyVariables>
                     <properties>
                         <configurationParameters>
