@@ -1,5 +1,7 @@
 package provider;
 
+import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
+
 import com.codeborne.selenide.WebDriverProvider;
 import exceptions.FailedDownloadApkException;
 import io.appium.java_client.android.AndroidDriver;
@@ -14,8 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
 public class SelenideWebDriver implements WebDriverProvider {
 

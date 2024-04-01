@@ -28,6 +28,7 @@
         <commons.version>2.11.0</commons.version>
         <juice.version>7.0.0</juice.version>
 
+        <!--System properties-->
         <remote.url>http://127.0.0.1:4723/wd/hub</remote.url>
 
     </properties>
