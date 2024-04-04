@@ -24,7 +24,7 @@ public class AppiumExtension implements BeforeEachCallback, BeforeAllCallback {
   public void beforeEach(ExtensionContext extensionContext) {
     extensionContext.getTestInstance()
             .ifPresent(instance -> {
-              injector = Guice.createInjector(new GuiceModule());
+              injector = Guice.createInjector(new GuiceModule(),new GuiceComponentsModule());
               injector.injectMembers(instance);
             });
   }

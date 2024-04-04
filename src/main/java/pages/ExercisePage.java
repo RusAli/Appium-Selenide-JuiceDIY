@@ -16,8 +16,8 @@ public class ExercisePage extends AbsBasePage<ExercisePage>{
     return this;
   }
 
-  public ExercisePage checkStartBtn() {
-    startBtn.shouldBe(Condition.visible).shouldHave(Condition.text("Start"));
-    return this;
+  public ChatPage clickStartBtn() {
+    startBtn.shouldBe(Condition.visible).shouldHave(Condition.text("Start")).click();
+    return new ChatPage();
   }
 }

@@ -1,32 +1,31 @@
 package andy;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.appium.SelenideAppium.$;
-import static com.codeborne.selenide.appium.SelenideAppium.$x;
-
 import com.google.inject.Inject;
 import components.HorizontalScrollComponent;
 import extenstions.AppiumExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import pages.ChatPage;
 import pages.MainPage;
 
 @ExtendWith(AppiumExtension.class)
 public class AndyTest {
   @Inject
   private MainPage mainPage;
-
+  @Inject
+  private ChatPage chatPage;
   @Inject
   private HorizontalScrollComponent scrollComponent;
 
   @Test
-  void shouldOpenExercisePage() {
+  void shouldStartExercise() {
+
     mainPage.open()
             .passGreetingWidget();
-
     scrollComponent
             .clickExerciseBtn()
             .checkPageTitle()
-            .checkStartBtn();
+            .clickStartBtn();
+    chatPage.isOpen();
   }
 }
