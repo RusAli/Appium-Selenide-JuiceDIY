@@ -16,19 +16,14 @@ public class AndyTest {
   @Inject
   private MainPage mainPage;
 
-
+  @Inject
   private HorizontalScrollComponent scrollComponent;
 
   @Test
   void shouldOpenExercisePage() {
     mainPage.open()
             .passGreetingWidget();
-//            .clickNextButton()
-//            .clickNextButton()
-//            .clickSkipButton()
-//            .clickAlertOkButton();
 
-    scrollComponent = new HorizontalScrollComponent();
     scrollComponent
             .clickExerciseBtn()
             .checkPageTitle()

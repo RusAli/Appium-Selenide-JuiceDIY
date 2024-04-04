@@ -11,11 +11,9 @@ import static com.codeborne.selenide.Selenide.$;
 public class HorizontalScrollComponent extends AbsBaseComponent<HorizontalScrollComponent> {
 
   private SelenideElement chatBtn = $("[text='Chat']");
-  private SelenideElement exerciseBtn = $("[text='Exercise']");
-
 
   public ExercisePage clickExerciseBtn(){
-    exerciseBtn.shouldBe(Condition.visible).click();
+    $("[text='Exercise']").shouldBe(Condition.visible).click();
     return new ExercisePage();
   }
 
