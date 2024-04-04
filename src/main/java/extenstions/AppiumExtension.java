@@ -3,6 +3,7 @@ package extenstions;
 import com.codeborne.selenide.Configuration;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import modules.GuiceComponentsModule;
 import modules.GuiceModule;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;

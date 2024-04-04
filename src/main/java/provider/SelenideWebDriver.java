@@ -42,13 +42,12 @@ public class SelenideWebDriver implements WebDriverProvider {
 
 
   private File downloadApk() {
-    File apk = new File("src/test/java/resources/app/Andy.apk");
+    File apk = new File(System.getProperty("user.dir") + "/src/test/java/resources/app/Andy.apk");
     if (!apk.exists()) {
       String url = "path to remote apk source";
       try (InputStream in = new URL(url).openStream()) {
         copyInputStreamToFile(in, apk);
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
         throw new FailedDownloadApkException();
       }
     }
