@@ -8,10 +8,6 @@ import org.openqa.selenium.By;
 
 public abstract class AbsBaseComponent<T> {
 
-//  {
-//    getComponentEntity().shouldBe(Condition.visible);
-//  }
-
   protected String baseComponentLocator;
 
   private By locatorAnalyzer(String value) {

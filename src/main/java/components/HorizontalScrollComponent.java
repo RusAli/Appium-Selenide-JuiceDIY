@@ -1,22 +1,22 @@
 package components;
 
+import static com.codeborne.selenide.Selenide.$;
+
 import annotations.Component;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import pages.ExercisePage;
-
-import static com.codeborne.selenide.Selenide.$;
+import pages.StatsPage;
 
 @Component("//android.widget.HorizontalScrollView")
 public class HorizontalScrollComponent extends AbsBaseComponent<HorizontalScrollComponent> {
 
-  private SelenideElement chatBtn = $("[text='Chat']");
 
-  public ExercisePage clickExerciseBtn(){
+  public ExercisePage clickExerciseBtn() {
     $("[text='Exercise']").shouldBe(Condition.visible).click();
     return new ExercisePage();
   }
-
-
-
+  public StatsPage clickStatsBtn() {
+    $("[text='Stats']").shouldBe(Condition.visible).click();
+    return new StatsPage();
+  }
 }
