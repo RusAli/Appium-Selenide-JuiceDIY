@@ -85,12 +85,12 @@
                         </junit.jupiter.extensions.autodetection.enabled>
                         <remote.url>${remote.url}</remote.url>
                     </systemPropertyVariables>
-                    <properties>
-                        <configurationParameters>
-                            junit.jupiter.execution.parallel.enabled=true
-                            junit.jupiter.execution.parallel.mode.default=concurrent
-                        </configurationParameters>
-                    </properties>
+<!--                    <properties>-->
+<!--                        <configurationParameters>-->
+<!--                            junit.jupiter.execution.parallel.enabled=true-->
+<!--                            junit.jupiter.execution.parallel.mode.default=concurrent-->
+<!--                        </configurationParameters>-->
+<!--                    </properties>-->
                 </configuration>
                 <dependencies>
                     <dependency>

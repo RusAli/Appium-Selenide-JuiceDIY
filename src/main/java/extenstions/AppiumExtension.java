@@ -6,13 +6,10 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import modules.GuiceComponentsModule;
 import modules.GuiceModule;
-import org.junit.jupiter.api.extension.AfterAllCallback;
-import org.junit.jupiter.api.extension.BeforeAllCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.*;
 import provider.SelenideWebDriver;
 
-public class AppiumExtension implements BeforeEachCallback, BeforeAllCallback, AfterAllCallback {
+public class AppiumExtension implements BeforeEachCallback, BeforeAllCallback, AfterEachCallback {
 
   private Injector injector;
 
@@ -33,7 +30,7 @@ public class AppiumExtension implements BeforeEachCallback, BeforeAllCallback, A
   }
 
   @Override
-  public void afterAll(ExtensionContext extensionContext) throws Exception {
+  public void afterEach(ExtensionContext extensionContext) {
     Selenide.closeWebDriver();
   }
 }
