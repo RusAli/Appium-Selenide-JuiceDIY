@@ -30,6 +30,10 @@
 
         <!--System properties-->
         <remote.url>http://127.0.0.1:4723/wd/hub</remote.url>
+        <apk.path>/home/user/selenoid/app/Andy.apk</apk.path>
+        <platform.name>Android</platform.name>
+        <platform.version>5.1</platform.version>
+        <avd>Pixel</avd>
 
     </properties>
 
@@ -84,6 +88,10 @@
                         <junit.jupiter.extensions.autodetection.enabled>true
                         </junit.jupiter.extensions.autodetection.enabled>
                         <remote.url>${remote.url}</remote.url>
+                        <apk.path>${apk.path}</apk.path>
+                        <platform.name>${platform.name}</platform.name>
+                        <platform.version>${platform.version}</platform.version>
+                        <avd>${avd}</avd>
                     </systemPropertyVariables>
 <!--                    <properties>-->
 <!--                        <configurationParameters>-->

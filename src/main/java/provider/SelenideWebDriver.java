@@ -28,9 +28,9 @@ public class SelenideWebDriver implements WebDriverProvider {
     UiAutomator2Options options = new UiAutomator2Options();
     options.merge(capabilities);
     options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-    options.setPlatformName("Android");
-    options.setAvd("Pixel");
-    options.setPlatformVersion("5.1");
+    options.setPlatformName(System.getProperty("platform.name"));
+    options.setAvd(System.getProperty("avd"));
+    options.setPlatformVersion(System.getProperty("platform.version"));
     options.setApp(app.getAbsolutePath());
 
     try {
@@ -40,9 +40,8 @@ public class SelenideWebDriver implements WebDriverProvider {
     }
   }
 
-
   private File downloadApk() {
-    File apk = new File(System.getProperty("user.dir") + "/src/test/java/resources/app/Andy.apk");
+    File apk = new File(System.getProperty("apk.path"));
     if (!apk.exists()) {
       String url = "path to remote apk source";
       try (InputStream in = new URL(url).openStream()) {
