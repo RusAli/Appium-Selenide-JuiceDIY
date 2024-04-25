@@ -34,11 +34,10 @@
 
         <!--System properties-->
         <remote.url>http://127.0.0.1/wd/hub</remote.url>
-        <apk.path>/home/user/selenoid/app/Andy.apk</apk.path>
         <platform.name>Android</platform.name>
         <platform.version>10.0</platform.version>
         <avd>Pixel</avd>
-
+        <apk.path>${project.build.sourceDirectory}/resources/Andy.apk</apk.path>
     </properties>
 
     <dependencies>
