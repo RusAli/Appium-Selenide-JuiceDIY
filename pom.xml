@@ -21,6 +21,10 @@
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <maven-checkstyle-plugin>3.1.0</maven-checkstyle-plugin>
         <findbugs-maven-plugin>3.0.5</findbugs-maven-plugin>
+        <aspectj.version>1.9.4</aspectj.version>
+        <allure.version>2.13.2</allure.version>
+        <allure.maven>2.10.0</allure.maven>
+        <allure-junit5.version>2.6.0</allure-junit5.version>
 
         <!--Dependencies-->
         <junit.version>5.10.1</junit.version>
@@ -29,10 +33,10 @@
         <juice.version>7.0.0</juice.version>
 
         <!--System properties-->
-        <remote.url>http://127.0.0.1:4723/wd/hub</remote.url>
+        <remote.url>http://127.0.0.1/wd/hub</remote.url>
         <apk.path>/home/user/selenoid/app/Andy.apk</apk.path>
         <platform.name>Android</platform.name>
-        <platform.version>5.1</platform.version>
+        <platform.version>10.0</platform.version>
         <avd>Pixel</avd>
 
     </properties>
@@ -73,54 +77,68 @@
             <version>${juice.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.automatedowl</groupId>
+            <artifactId>allure-environment-writer</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
 
     </dependencies>
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.plugin.version}</version>
                 <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <reportFormat>plain</reportFormat>
+                    <consoleOutputReporter>
+                        <disable>false</disable>
+                    </consoleOutputReporter>
+                    <statelessTestsetInfoReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoTreeReporter"/>
+                    <argLine>
+                        -Dfile.encoding=UTF-8
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                     <systemPropertyVariables>
-                        <junit.jupiter.extensions.autodetection.enabled>true
-                        </junit.jupiter.extensions.autodetection.enabled>
                         <remote.url>${remote.url}</remote.url>
                         <apk.path>${apk.path}</apk.path>
                         <platform.name>${platform.name}</platform.name>
                         <platform.version>${platform.version}</platform.version>
                         <avd>${avd}</avd>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
-<!--                    <properties>-->
-<!--                        <configurationParameters>-->
-<!--                            junit.jupiter.execution.parallel.enabled=true-->
-<!--                            junit.jupiter.execution.parallel.mode.default=concurrent-->
-<!--                        </configurationParameters>-->
-<!--                    </properties>-->
                 </configuration>
+
                 <dependencies>
                     <dependency>
-                        <groupId>org.junit.jupiter</groupId>
-                        <artifactId>junit-jupiter-api</artifactId>
-                        <version>${junit.version}</version>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
                     </dependency>
                     <dependency>
-                        <groupId>org.junit.jupiter</groupId>
-                        <artifactId>junit-jupiter-engine</artifactId>
-                        <version>${junit.version}</version>
+                        <groupId>me.fabriciorby</groupId>
+                        <artifactId>maven-surefire-junit5-tree-reporter</artifactId>
+                        <version>0.1.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven-checkstyle-plugin}</version>
                 <configuration>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                    <configLocation>${project.build.sourceDirectory}/../resources/checkstyle.xml</configLocation>
+                    <configLocation>src/main/resources/checkstyle.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
                 </configuration>
                 <executions>
                     <execution>
@@ -132,7 +150,16 @@
                     </execution>
                 </executions>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>10</source>
+                    <target>10</target>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
@@ -146,12 +173,13 @@
                 </dependencies>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.maven}</version>
                 <configuration>
-                    <source>${project.java.version}</source>
-                    <target>${project.java.version}</target>
-                    <encoding>${project.build.Encoding}</encoding>
+                    <reportVersion>${allure.version}</reportVersion>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                    <allureDownloadUrl>https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/${allure.version}/allure-commandline-${allure.version}.zip</allureDownloadUrl>
                 </configuration>
             </plugin>
         </plugins>
